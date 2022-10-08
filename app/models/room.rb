@@ -3,6 +3,10 @@ class Room < ApplicationRecord
 
   has_many :messages
 
+  def to_param
+    token
+  end
+
   private
 
   def generate_token
