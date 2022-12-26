@@ -41,10 +41,10 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://insta.grilmeal.ru/cable'
+  config.action_cable.url = 'redis://localhost:6379/cable'
   config.action_cable.allowed_request_origins = [
-    'http://insta.grilmeal.ru/cable',
-    'https://insta.grilmeal.ru/cable'
+    'http://insta.grillmeal.ru/cable',
+    'https://insta.grillmeal.ru/cable'
   ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
