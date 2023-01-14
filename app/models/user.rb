@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   scope :online, -> { where(online: true) }
 
+  private
+
   def generate_nickname
     self.nickname = Faker::Name.first_name.downcase
   end
