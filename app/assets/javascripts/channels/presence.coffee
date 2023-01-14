@@ -1,15 +1,10 @@
 jQuery(document).on 'turbolinks:load', ->
-  App.presence = App.cable.subscriptions.create "PresenceChannel",
+  App.presence = App.cable.subscriptions.create 'PresenceChannel',
     connected: ->
 
     disconnected: ->
 
     received: (data) ->
-      console.log('Received action: ' + data['action'])
+      users = data['users'].map (user) -> "<li>#{user.nickname}</li>"
 
-      if data['action'] == 'append'
-        received_id = $(data['content'])[0].id
-      if $("##{received_id}").length == 0
-        $('#presence_users').append $(data['content'])
-
-      $(data['id']).remove() if data['action'] == 'remove'
+      $('#presence_users').html(users.join(''))
