@@ -1,7 +1,7 @@
 development:
   adapter: redis
   url: redis://localhost:6379
-  channel_prefix: instatalk_production
+  channel_prefix: instatalk_development
 
 test:
   adapter: async
