@@ -4,7 +4,7 @@ class PresenceChannel < ApplicationCable::Channel
 
     current_user.update(online: true)
     stream_from 'presence_channel'
-    broadcast_presence_status
+    broadcast_presence_users
   end
 
   def unsubscribed
@@ -13,7 +13,7 @@ class PresenceChannel < ApplicationCable::Channel
     return unless users_connections_count.zero?
 
     current_user.update(online: false)
-    broadcast_presence_status
+    broadcast_presence_users
   end
 
   private
@@ -22,7 +22,7 @@ class PresenceChannel < ApplicationCable::Channel
     ActionCable.server.connections.count { |connect| connect.current_user == current_user }
   end
 
-  def broadcast_presence_status
+  def broadcast_presence_users
     ActionCable.server.broadcast 'presence_channel', users: User.online
   end
 end
